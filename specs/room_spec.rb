@@ -25,7 +25,7 @@ class TestRoom < Minitest::Test
     assert_equal(3, @room1.capacity)
   end
 
-  def test_get_guests_in_room
+  def test_get_guests_in_room__adds_2_guests
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest1)
     assert_equal(2,@room1.guests_in_room.length)
@@ -39,22 +39,38 @@ class TestRoom < Minitest::Test
     assert_equal(0, @room1.playlist.length)
   end
 
-  def test_can_check_guest_name_into_room
+  def test_can_check_guest_in__check_names
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest2)
     assert_equal(["Jim", "Ed"], @room1.guests_in_room)
   end
 
-  def test_can_check_out_guest_name_from_room
+  def test_can_check_guest_in__adds_too_many_guests_returns_guests_in_room_equals_capacity
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest1)
+    assert_equal(@room1.capacity,@room1.guests_in_room.length)
+  end
+
+  def test_can_check_guest_in__adds_too_many_guests_returns_guests_in_room_returns_string
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest1)
+    assert_equal("Sorry, there is no more capacity here", @room1.check_guest_in(@guest1))
+  end
+
+  def test_can_check_out_guest_from_room
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest2)
     @room1.check_guest_out(@guest1)
     assert_equal(["Ed"], @room1.guests_in_room)
   end
 
-  def test_can_add_song_to_room_playlist
+  def test_can_add_song_to_room_playlist__checks_length
     @room1.add_song_to_playlist(@song1)
-    assert_equal(["Fame"], @room1.playlist)
+    assert_equal(1, @room1.playlist.length)
   end
 
   def test_can_delete_song_from_room_playlist

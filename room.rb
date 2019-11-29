@@ -10,7 +10,11 @@ class Room
   end
 
   def check_guest_in(guest)
-    @guests_in_room.push(guest.name)
+    if @guests_in_room.length >= @capacity
+      return "Sorry, there is no more capacity here"
+    elsif @guests_in_room.length <= @capacity
+      @guests_in_room.push(guest.name)
+    end
   end
 
   def check_guest_out(guest)
@@ -18,10 +22,10 @@ class Room
   end
 
   def add_song_to_playlist(song)
-    @playlist.push(song.name)
+    @playlist.push(song)
   end
 
   def delete_song_from_playlist(song)
-    @playlist.delete(song.name)
+    @playlist.delete(song)
   end
 end
