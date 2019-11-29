@@ -8,4 +8,9 @@ class Room
     @guests_in_room = []
   end
 
+  def check_guest_in(guest)
+    @guests_in_room.push(guest.name)
+  end
+
+
 end
