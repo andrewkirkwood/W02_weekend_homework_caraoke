@@ -1,12 +1,13 @@
 class Room
 
-  attr_reader :name, :capacity, :guests_in_room, :playlist
+  attr_reader :name, :capacity, :guests_in_room, :playlist, :entry_fee
 
-  def initialize(name, capacity)
+  def initialize(name, capacity, entry_fee)
     @name = name
     @capacity = capacity
     @guests_in_room = []
     @playlist = []
+    @entry_fee = entry_fee
   end
 
   def check_guest_in(guest)
@@ -18,7 +19,7 @@ class Room
   end
 
   def check_guest_out(guest)
-    @guests_in_room.delete(guest.name)
+    @guests_in_room.delete(guest)
   end
 
   def add_song_to_playlist(song)
