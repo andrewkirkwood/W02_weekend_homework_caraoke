@@ -74,7 +74,7 @@ class TestRoom < Minitest::Test
   end
 
   def test_check_guest_in__guest_does_not_have_enough_money
-    # @room1.check_guest_in(@guest2)
+    @room1.check_guest_in(@guest2)
     assert_equal(0, @room1.guests_in_room.length)
   end
 
@@ -106,6 +106,11 @@ class TestRoom < Minitest::Test
 
   def test_check_guest_has_enough_money_to_pay_for_entry__returns_false
     assert_equal(false, @room1.check_guest_has_enough_for_entry_fee(@guest2))
+  end
+
+  def test_check_favorite_song_matches_playlist__returns_woo
+    @room1.add_song_to_playlist(@song1)
+    assert_equal("woo", @room1.check_favorite_song_matches_playlist(@guest1))
   end
 
 end

@@ -37,4 +37,12 @@ class Room
     return true if guest.wallet == @entry_fee
     return false if guest.wallet < @entry_fee
   end
+
+  def check_favorite_song_matches_playlist(guest)
+    @playlist.each {|song|
+      if song.name == guest.favourite_song_name && song.artist == guest.favourite_song_name
+        return "woo"
+      end
+    }
+  end
 end
