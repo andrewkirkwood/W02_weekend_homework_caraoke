@@ -4,6 +4,8 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 require_relative('../room')
 require_relative('../guest')
+require_relative('../song')
+
 
 class TestRoom < Minitest::Test
 
@@ -11,7 +13,6 @@ class TestRoom < Minitest::Test
     @room1 = Room.new("The Cave", 50)
     @guest1 = Guest.new("Jim", 50, "Fame", "David Bowie")
     @guest2 = Guest.new("Ed", 50, "Fame", "David Bowie")
-
   end
 
   def test_get_room_name
@@ -24,6 +25,10 @@ class TestRoom < Minitest::Test
 
   def test_room_is_empty
     assert_equal(0, @room1.guests_in_room.length)
+  end
+
+  def test_playlist_is_empty
+    assert_equal(0, @room1.playlist.length)
   end
 
   def test_can_check_guest_name_into_room
