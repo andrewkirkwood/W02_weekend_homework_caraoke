@@ -12,7 +12,7 @@ class TestRoom < Minitest::Test
   def setup()
     @room1 = Room.new("The Cave", 3, 5)
     @guest1 = Guest.new("Jim", 50, "Fame", "David Bowie")
-    @guest2 = Guest.new("Ed", 50, "Fame", "David Bowie")
+    @guest2 = Guest.new("Ed", 2, "Fame", "David Bowie")
     @song1 = Song.new("Fame", "David Bowie")
 
   end
@@ -39,10 +39,10 @@ class TestRoom < Minitest::Test
     assert_equal(0, @room1.playlist.length)
   end
 
-  def test_can_check_guest_in__check_names
+  def test_can_check_guest_in_checks_number_of_guests
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest2)
-    assert_equal(["Jim", "Ed"], @room1.guests_in_room)
+    assert_equal(2, @room1.guests_in_room.length)
   end
 
   def test_can_check_guest_in__adds_too_many_guests_returns_guests_in_room_equals_capacity
@@ -65,7 +65,7 @@ class TestRoom < Minitest::Test
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest2)
     @room1.check_guest_out(@guest1)
-    assert_equal(2, @room1.guests_in_room.length)
+    assert_equal(1, @room1.guests_in_room.length)
   end
 
   def test_can_add_song_to_room_playlist__checks_length
@@ -77,5 +77,9 @@ class TestRoom < Minitest::Test
     @room1.add_song_to_playlist(@song1)
     @room1.delete_song_from_playlist(@song1)
     assert_equal(0, @room1.playlist.length)
+  end
+
+  def test_check_guest_has_enough_money_to_pay_for_entry
+    assert_equal(true, @room1.check_guest_has_enough_for_entry_fee(@guest1))
   end
 end

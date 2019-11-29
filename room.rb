@@ -14,7 +14,7 @@ class Room
     if @guests_in_room.length >= @capacity
       return "Sorry, there is no more capacity here"
     elsif @guests_in_room.length <= @capacity
-      @guests_in_room.push(guest.name)
+      @guests_in_room.push(guest)
     end
   end
 
@@ -28,5 +28,10 @@ class Room
 
   def delete_song_from_playlist(song)
     @playlist.delete(song)
+  end
+
+  def check_guest_has_enough_for_entry_fee(guest)
+    return true if guest.wallet >= @entry_fee
+    return false if quest.wallet < @entry_fee
   end
 end
