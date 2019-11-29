@@ -12,5 +12,8 @@ class Room
     @guests_in_room.push(guest.name)
   end
 
+  def check_guest_out(guest)
+    @guests_in_room.delete(guest.name)
+  end
 
 end
