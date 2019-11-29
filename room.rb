@@ -12,9 +12,9 @@ class Room
   end
 
   def check_guest_in(guest)
-    if @guests_in_room.length >= @capacity && check_guest_has_enough_for_entry_fee(guest)
+    if @guests_in_room.length >= @capacity
       return "Sorry, there is no more capacity here"
-    elsif @guests_in_room.length <= @capacity
+    elsif @guests_in_room.length <= @capacity && check_guest_has_enough_for_entry_fee(guest)
       @guests_in_room.push(guest)
       @till_amount += @entry_fee
     end

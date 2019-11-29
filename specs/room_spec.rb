@@ -46,6 +46,7 @@ class TestRoom < Minitest::Test
   def test_check_guest_in_checks_number_of_guests
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest2)
+    @room1.check_guest_in(@guest3)
     assert_equal(2, @room1.guests_in_room.length)
   end
 
@@ -79,7 +80,7 @@ class TestRoom < Minitest::Test
 
   def test_can_check_out_guest_from_room
     @room1.check_guest_in(@guest1)
-    @room1.check_guest_in(@guest2)
+    @room1.check_guest_in(@guest3)
     @room1.check_guest_out(@guest1)
     assert_equal(1, @room1.guests_in_room.length)
   end
