@@ -20,4 +20,8 @@ class TestGuest < Minitest::Test
   def test_can_get_guest_favourite_song_name
     assert_equal("Fame", @guest1.favourite_song_name)
   end
+
+  def test_can_get_guest_favourite_song_artist
+    assert_equal("David Bowie", @guest1.favourite_song_artist)
+  end
 end
