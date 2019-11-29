@@ -21,31 +21,35 @@ class TestRoom < Minitest::Test
     assert_equal("The Cave", @room1.name)
   end
 
-  def test_get_room__available_capacity
+  def test_check_room__available_capacity
     assert_equal(3, @room1.capacity)
   end
 
-  def test_get_guests_in_room__adds_2_guests
+  def test_check_guests_in_room__adds_2_guests
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest1)
     assert_equal(2,@room1.guests_in_room.length)
   end
 
-  def test_room_is_empty
+  def test_check_room_is_empty
     assert_equal(0, @room1.guests_in_room.length)
   end
 
-  def test_playlist_is_empty
+  def test_check_playlist_is_empty
     assert_equal(0, @room1.playlist.length)
   end
 
-  def test_can_check_guest_in_checks_number_of_guests
+  def test_check_till_amount_is_0
+    assert_equal(0, @room1.till_amount)
+  end
+
+  def test_check_guest_in_checks_number_of_guests
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest2)
     assert_equal(2, @room1.guests_in_room.length)
   end
 
-  def test_can_check_guest_in__adds_too_many_guests_returns_guests_in_room_equals_capacity
+  def test_check_guest_in__adds_too_many_guests_returns_guests_in_room_equals_capacity
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest1)
@@ -59,6 +63,18 @@ class TestRoom < Minitest::Test
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest1)
     assert_equal("Sorry, there is no more capacity here", @room1.check_guest_in(@guest1))
+  end
+
+  def test_check_guest_in__checks_room_till_goes_up
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest1)
+    @room1.check_guest_in(@guest3)
+    assert_equal(15, @room1.till_amount)
+  end
+
+  def test_check_guest_in__guest_does_not_have_enough_money
+    # @room1.check_guest_in(@guest2)
+    assert_equal(0, @room1.guests_in_room.length)
   end
 
   def test_can_check_out_guest_from_room
@@ -87,7 +103,8 @@ class TestRoom < Minitest::Test
     assert_equal(true, @room1.check_guest_has_enough_for_entry_fee(@guest3))
   end
 
-
-
+  def test_check_guest_has_enough_money_to_pay_for_entry__returns_false
+    assert_equal(false, @room1.check_guest_has_enough_for_entry_fee(@guest2))
+  end
 
 end
