@@ -17,5 +17,11 @@ class Room
     @guests_in_room.delete(guest.name)
   end
 
+  def add_song_to_playlist(song)
+    @playlist.push(song.name)
+  end
 
+  def delete_song_from_playlist(song)
+    @playlist.delete(song.name)
+  end
 end
