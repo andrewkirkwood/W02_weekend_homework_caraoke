@@ -13,8 +13,8 @@ class TestRoom < Minitest::Test
     @room1 = Room.new("The Cave", 3, 5)
     @guest1 = Guest.new("Jim", 50, "Fame", "David Bowie")
     @guest2 = Guest.new("Ed", 2, "Fame", "David Bowie")
+    @guest3 = Guest.new("John", 5, "Fame", "David Bowie")
     @song1 = Song.new("Fame", "David Bowie")
-
   end
 
   def test_get_room_name
@@ -79,7 +79,15 @@ class TestRoom < Minitest::Test
     assert_equal(0, @room1.playlist.length)
   end
 
-  def test_check_guest_has_enough_money_to_pay_for_entry
+  def test_check_guest_has_enough_money_to_pay_for_entry__returns_true
     assert_equal(true, @room1.check_guest_has_enough_for_entry_fee(@guest1))
   end
+
+  def test_check_guest_has_enough_money_to_pay_for_entry__returns_true_again
+    assert_equal(true, @room1.check_guest_has_enough_for_entry_fee(@guest3))
+  end
+
+
+
+
 end

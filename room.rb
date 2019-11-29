@@ -31,7 +31,8 @@ class Room
   end
 
   def check_guest_has_enough_for_entry_fee(guest)
-    return true if guest.wallet >= @entry_fee
-    return false if quest.wallet < @entry_fee
+    return true if guest.wallet > @entry_fee
+    return true if guest.wallet == @entry_fee
+    return false if guest.wallet < @entry_fee
   end
 end
