@@ -52,4 +52,9 @@ class Room
       end
     }
   end
+
+  def sell_drink_to_customer(guest,drink)
+    guest.update_bar_tab(drink)
+    drink.add_or_remove_drink_stock(-1)
+  end
 end
