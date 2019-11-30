@@ -33,15 +33,15 @@ class TestRoom < Minitest::Test
     assert_equal(2,@room1.guests_in_room.length)
   end
 
-  def test_check_room_is_empty
+  def test_check_room_starts_empty
     assert_equal(0, @room1.guests_in_room.length)
   end
 
-  def test_check_playlist_is_empty
+  def test_check_playlist_starts_empty
     assert_equal(0, @room1.playlist.length)
   end
 
-  def test_check_till_amount_is_0
+  def test_check_till_amount_starts_0
     assert_equal(0, @room1.till_amount)
   end
 
@@ -68,11 +68,16 @@ class TestRoom < Minitest::Test
     assert_equal("Sorry, there is no more capacity here", @room1.check_guest_in(@guest1))
   end
 
-  def test_check_guest_in__checks_room_till_goes_up
+  def test_check_guest_in__guest_has_not_enough_in_wallet__return_string
+    assert_equal("sorry, you don't have sufficient funds", @room1.check_guest_in(@guest2))
+  end
+
+  def test_check_guest_in__checks_room_till_amount_increases_and_guest_wallet_decreases
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest1)
     @room1.check_guest_in(@guest3)
     assert_equal(15, @room1.till_amount)
+    assert_equal(0, @guest3.wallet)
   end
 
   def test_check_guest_in__guest_does_not_have_enough_money

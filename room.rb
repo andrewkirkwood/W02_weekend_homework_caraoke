@@ -11,12 +11,23 @@ class Room
     @till_amount = till_amount
   end
 
+  def check_guest_has_enough_for_entry_fee(guest)
+    return true if guest.wallet > @entry_fee
+    return true if guest.wallet == @entry_fee
+    return false if guest.wallet < @entry_fee
+  end
+
   def check_guest_in(guest)
     if @guests_in_room.length >= @capacity
       return "Sorry, there is no more capacity here"
-    elsif @guests_in_room.length <= @capacity && check_guest_has_enough_for_entry_fee(guest)
-      @guests_in_room.push(guest)
-      @till_amount += @entry_fee
+    elsif check_guest_has_enough_for_entry_fee(guest)
+        @guests_in_room.push(guest)
+        @till_amount += @entry_fee
+        guest.deduct_guest_wallet(@entry_fee)
+    elsif check_guest_has_enough_for_entry_fee(guest) == false
+      return "sorry, you don't have sufficient funds"
+    else
+      return "invalid input"
     end
   end
 
@@ -30,12 +41,6 @@ class Room
 
   def delete_song_from_playlist(song)
     @playlist.delete(song)
-  end
-
-  def check_guest_has_enough_for_entry_fee(guest)
-    return true if guest.wallet > @entry_fee
-    return true if guest.wallet == @entry_fee
-    return false if guest.wallet < @entry_fee
   end
 
   def check_favorite_song_matches_playlist(guest)
