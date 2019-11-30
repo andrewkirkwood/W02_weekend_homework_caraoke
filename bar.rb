@@ -1,11 +1,19 @@
 class Bar
 
-  attr_reader :bar_name
+  attr_reader :bar_name, :bar_till
 
-  def initialize(bar_name)
+  def initialize(bar_name, bar_till = 0)
     @bar_name = bar_name
     @bar_tabs = []
     @drinks = []
+    @bar_till = bar_till
   end
 
+  def get_bar_tabs
+    return @bar_tabs
+  end
+
+  def get_drinks
+    return @drinks
+  end
 end
