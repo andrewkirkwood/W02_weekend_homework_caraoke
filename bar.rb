@@ -20,4 +20,10 @@ class Bar
   def add_drink_to_bar(drink)
     @drinks << drink
   end
+
+  def create_bar_tab(customer)
+    @bar_tabs << customer
+  end
+
+  
 end

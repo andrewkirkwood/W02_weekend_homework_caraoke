@@ -5,17 +5,20 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 require_relative('../room')
 require_relative('../guest')
 require_relative('../song')
-
+require_relative('../bar')
+require_relative('../drink')
 
 class TestRoom < Minitest::Test
 
   def setup()
     @room1 = Room.new("The Cave", 3, 5)
-    @guest1 = Guest.new("Jim", 50, "Fame", "David Bowie")
-    @guest2 = Guest.new("Ed", 2, "Fame", "David Bowie")
-    @guest3 = Guest.new("John", 5, "Fame", "David Bowie")
+    @guest1 = Guest.new("Jim", 50, "Fame", "David Bowie", 30)
+    @guest2 = Guest.new("Ed", 2, "Fame", "David Bowie", 30)
+    @guest3 = Guest.new("John", 5, "Fame", "David Bowie", 30)
     @song1 = Song.new("Fame", "David Bowie")
     @song2 = Song.new("Regular John", "Queens of The Stone Age")
+    @bar1 = Bar.new("Room1_bar")
+    @drink = Drink.new("Beer", 2, 10)
 
   end
 
@@ -123,6 +126,10 @@ class TestRoom < Minitest::Test
   def test_check_favorite_song_matches_playlist__returns_sorry_no_match
     @room1.add_song_to_playlist(@song2)
     assert_equal("sorry, no match", @room1.check_favorite_song_matches_playlist(@guest1))
+  end
+
+  def test_bar_sells_drink_to_customer
+
   end
 
 end

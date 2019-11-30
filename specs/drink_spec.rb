@@ -23,7 +23,6 @@ class TestBar < Minitest::Test
   end
 
   def test_can_add_or_remove_drink_stock_level__reduces
-    # assert_equal(12, @drink.add_or_remove_drink_stock(2))
     @drink.add_or_remove_drink_stock(-2)
     assert_equal(8, @drink.stock_level)
   end
