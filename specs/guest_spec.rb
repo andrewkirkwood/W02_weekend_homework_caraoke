@@ -17,6 +17,10 @@ class TestGuest < Minitest::Test
     assert_equal(50, @guest1.wallet)
   end
 
+  def test_can_deduct_guest_wallet
+    assert_equal(40, @guest1.deduct_guest_wallet(10))
+  end
+
   def test_can_get_guest_favourite_song_name
     assert_equal("Fame", @guest1.favourite_song_name)
   end

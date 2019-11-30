@@ -40,8 +40,10 @@ class Room
 
   def check_favorite_song_matches_playlist(guest)
     @playlist.each {|song|
-      if song.name == guest.favourite_song_name && song.artist == guest.favourite_song_name
+      if song.name == guest.favourite_song_name && song.artist == guest.favourite_song_artist
         return "woo"
+      else
+        return "sorry, no match"
       end
     }
   end

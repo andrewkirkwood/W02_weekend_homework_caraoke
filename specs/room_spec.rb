@@ -15,6 +15,8 @@ class TestRoom < Minitest::Test
     @guest2 = Guest.new("Ed", 2, "Fame", "David Bowie")
     @guest3 = Guest.new("John", 5, "Fame", "David Bowie")
     @song1 = Song.new("Fame", "David Bowie")
+    @song2 = Song.new("Regular John", "Queens of The Stone Age")
+
   end
 
   def test_get_room_name
@@ -111,6 +113,11 @@ class TestRoom < Minitest::Test
   def test_check_favorite_song_matches_playlist__returns_woo
     @room1.add_song_to_playlist(@song1)
     assert_equal("woo", @room1.check_favorite_song_matches_playlist(@guest1))
+  end
+
+  def test_check_favorite_song_matches_playlist__returns_sorry_no_match
+    @room1.add_song_to_playlist(@song2)
+    assert_equal("sorry, no match", @room1.check_favorite_song_matches_playlist(@guest1))
   end
 
 end

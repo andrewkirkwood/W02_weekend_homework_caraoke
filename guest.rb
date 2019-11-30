@@ -9,4 +9,7 @@ class Guest
     @favourite_song_artist = favourite_song_artist
   end
 
+  def deduct_guest_wallet(amount)
+    @wallet -= amount
+  end
 end
