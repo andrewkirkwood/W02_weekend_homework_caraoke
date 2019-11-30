@@ -8,6 +8,8 @@ class Drink
     @stock_level = stock_level
   end
 
-
+  def add_or_remove_drink_stock(amount)
+    @stock_level += amount
+  end
 
 end

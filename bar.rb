@@ -16,4 +16,8 @@ class Bar
   def get_drinks
     return @drinks
   end
+
+  def add_drink_to_bar(drink)
+    @drinks << drink
+  end
 end
