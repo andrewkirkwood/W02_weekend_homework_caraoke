@@ -25,5 +25,5 @@ class Bar
     @bar_tabs << customer
   end
 
-  
+
 end

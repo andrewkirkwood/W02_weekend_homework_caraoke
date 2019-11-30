@@ -129,7 +129,8 @@ class TestRoom < Minitest::Test
   end
 
   def test_bar_sells_drink_to_customer
-
+    @room1.sell_drink_to_customer(@guest1, @drink)
+    assert_equal(32, @guest1.bar_tab)
   end
 
 end

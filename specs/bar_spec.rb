@@ -2,10 +2,10 @@ require('minitest/autorun')
 require('minitest/reporters')
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-require_relative('../bar')
 require_relative('../guest')
+require_relative('../song')
+require_relative('../bar')
 require_relative('../drink')
-
 
 class TestBar < Minitest::Test
 
@@ -44,13 +44,11 @@ class TestBar < Minitest::Test
     assert_equal(1, @bar1.get_bar_tabs.length)
   end
 
-  # def test_can_give_array_of_customer_bar_tab
-  #   @bar1.create_bar_tab(@guest)
-  #   assert_equal(["Jim", 50, "Fame", "David Bowie", 30], @bar1.return_bar_tab_array(@guest))
-  # end
+  def test_can_get_customer_bar_tab
+    assert_equal(30, @guest1.bar_tab)
+  end
 
-  # def test_can_update_bar_tab
-  #   @bar1.update_bar_tab(@guest1, @drink )
-  #   assert_equal(12, @bar1.get_bar_tabs(@guest1))
-  # end
+  def test_can_update_customer_bar_tab
+    assert_equal(32, @guest1.update_bar_tsab(@drink))
+  end
 end

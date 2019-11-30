@@ -13,4 +13,8 @@ class Guest
   def deduct_guest_wallet(amount)
     @wallet -= amount
   end
+
+  def update_bar_tab(drink)
+    @bar_tab += drink.price
+  end
 end
